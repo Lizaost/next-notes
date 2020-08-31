@@ -1,0 +1,37 @@
+.page_wrapper{
+  padding: 2rem;
+
+  .back_link{
+    font-size: 1rem;
+    vertical-align: center;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    background-color: #fff;
+    transition-duration: 500ms;
+
+    &:hover{
+      background-color: #ddd;
+      transition-duration: 500ms;
+    }
+
+  }
+
+  .note_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .note_title{
+      font-weight: lighter;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .note_text{
+      width: 80%;
+    }
+  }
+}

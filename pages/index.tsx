@@ -5,7 +5,7 @@ import {Note} from '../types/interfaces'
 import Link from "next/dist/client/link";
 
 export const Home: React.FunctionComponent = () => {
-    
+
     const [notes, setNotes] = useState<Note[]>([]);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export const Home: React.FunctionComponent = () => {
         <div className={styles.notes_list_wrapper}>
             {notes.length>0 ?
                 notes.map(note => (
-                    <Link href="/notes/[id]" as={"/notes/" + note.id}>
+                    <Link href="/[id]" as={"/" + note.id}>
                         <article className={styles.notes_item}>
                             <h2>{note.title}</h2>
                             <p className={styles.post_item_text}>{note.text}</p>
