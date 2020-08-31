@@ -1,61 +1,26 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Note} from '../types/interfaces'
 import Link from "next/dist/client/link";
 
 export const Home: React.FunctionComponent = () => {
-    let notes: Note[] = [
-        {
-            id: 1,
-            title: 'Test 1',
-            text: "Test note"
-        },
-        {
-            id: 2,
-            title: 'Test 2',
-            text: "Test note"
-        },
-        {
-            id: 3,
-            title: 'Test 3',
-            text: "Test note"
-        },
-        {
-            id: 4,
-            title: 'Test 4',
-            text: "Test note"
-        },
-        {
-            id: 5,
-            title: 'Test 5',
-            text: "Test note"
-        },
-        {
-            id: 6,
-            title: 'Test 6',
-            text: "Test note"
-        },
-        {
-            id: 7,
-            title: 'Test 7',
-            text: "Test note"
-        },
-        {
-            id: 8,
-            title: 'Test 8',
-            text: "Test note"
-        },
-        {
-            id: 9,
-            title: 'Test 9',
-            text: "Test note"
+    
+    const [notes, setNotes] = useState<Note[]>([]);
+
+    useEffect(() => {
+        const notes = localStorage.getItem("next-notes-notes");
+        console.log(notes);
+        if (notes){
+            setNotes(JSON.parse(notes));
+            console.log("Loaded notes from local storage");
         }
-    ];
+    }, []);
+
     return (<div>
         <h1 className={styles.page_header}>Notes</h1>
         <div className={styles.notes_list_wrapper}>
-            {
+            {notes.length>0 ?
                 notes.map(note => (
                     <Link href="/notes/[id]" as={"/notes/" + note.id}>
                         <article className={styles.notes_item}>
@@ -64,6 +29,7 @@ export const Home: React.FunctionComponent = () => {
                         </article>
                     </Link>
                 ))
+                : <h2 className={styles.no_notes_message}>No notes were created yet</h2>
             }
         </div>
     </div>)
